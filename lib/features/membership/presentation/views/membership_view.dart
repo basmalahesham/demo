@@ -1,5 +1,4 @@
 import 'package:demo/features/membership/presentation/views/widgets/membership_view_body.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,10 +14,15 @@ class _MembershipViewState extends State<MembershipView>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
+  final List<String> _tabs = ['Membership Plans', 'Benefits', 'Billing'];
+
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: _tabs.length, vsync: this);
+    _tabController.addListener(() {
+      setState(() {}); // علشان يعيد بناء التابز ويحدث الوضع المختار
+    });
   }
 
   @override
@@ -54,10 +58,10 @@ class _MembershipViewState extends State<MembershipView>
           preferredSize: Size.fromHeight(48),
           child: TabBar(
             controller: _tabController,
-            indicatorColor: Color(0xFFDA1C5A),
+            indicatorColor: const Color(0xFFDA1C5A),
             indicatorWeight: 2.14,
             dividerColor: Colors.transparent,
-            labelColor: Color(0xFFDA1C5A),
+            labelColor: const Color(0xFFDA1C5A),
             labelStyle: GoogleFonts.dmSans(
               fontWeight: FontWeight.w500,
               fontSize: 15,
@@ -67,14 +71,20 @@ class _MembershipViewState extends State<MembershipView>
               fontWeight: FontWeight.w500,
               fontSize: 15,
             ),
-            tabs: [
-              Padding(
-                padding: EdgeInsets.only(bottom: isSelected ? 6.0 : 0.0),
-                child: Tab(text: 'Membership Plans'),
-              ),
-              Tab(text: 'Benefits'),
-              Tab(text: 'Billing'),
-            ],
+            tabs: List.generate(_tabs.length, (index) {
+              final isSelected = _tabController.index == index;
+              return Tab(
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: isSelected ? 16.0 : 0.0),
+                  child: Text(
+                    _tabs[index],
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    softWrap: false,
+                  ),
+                ),
+              );
+            }),
           ),
         ),
       ),
