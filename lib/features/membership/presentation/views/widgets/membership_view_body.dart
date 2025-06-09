@@ -20,6 +20,10 @@ class MembershipViewBody extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(height: 10),
+                Divider(color: Color(0xFFE5E7EB), endIndent: 15, indent: 15),
+                Divider(color: Color(0xFFE5E7EB)),
+                SizedBox(height: 17.3),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -60,7 +64,6 @@ class MembershipViewBody extends StatelessWidget {
                     color: Color(0xFF111827),
                   ),
                 ),
-
               ],
             ),
           ),
@@ -70,6 +73,3 @@ class MembershipViewBody extends StatelessWidget {
     );
   }
 }
-
-
-
