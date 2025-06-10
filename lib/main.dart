@@ -1,4 +1,4 @@
-import 'package:demo/features/membership/presentation/views/membership_view.dart';
+import 'package:demo/features/content/presentation/views/content_view.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: MembershipView(),
+      home: ContentView(),
     );
   }
 }
